@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import {selectedMovies} from '../../selectors'
+import { selectedMovies } from '../../selectors'
 import './style.css'
 
 class Movie extends Component {
     render() {
-        const { movie } = this.props    
+        const { movie } = this.props
         return (
-            <div 
-                className = "movieList--item"
+            <div
+                className="movieList--item"
             >
-                {movie.title}
+                <h3>{movie.title}</h3>
             </div>
         )
     }

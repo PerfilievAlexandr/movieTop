@@ -1,8 +1,23 @@
 .movieList--item {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    
     width: 280px;
     height: 150px;
-    border: 1px solid black;
+    border: 2px solid black;
 
     margin-top: 20px;
-    margin-right: 10px
+    margin-right: 10px;
+    padding: 20px;
+    box-sizing: border-box
+    
+}
+
+.movieList--item:hover {
+    border: 2px solid blue;
+}
+
+.movieList--item:active {
+    border: 2px solid red;
 }
