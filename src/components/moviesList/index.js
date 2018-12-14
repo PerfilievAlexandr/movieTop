@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { arrMoviesData } from '../../selectors'
+import { foundMovies } from '../../selectors'
 import PropTypes from 'prop-types'
 import Movie from '../movie'
+import './style.css'
 
 class MoviesList extends Component {
     render() {
@@ -15,7 +16,7 @@ class MoviesList extends Component {
             </li>)
         )
         return (
-            <div>
+            <div  className = 'moviesList'>
                 {moviesList}
             </div>
         )
@@ -27,7 +28,7 @@ MoviesList.propTypes = {
 }
 
 export default connect((store) => ({
-    movies: arrMoviesData(store)
+    movies: foundMovies(store)
 })
 
 )(MoviesList)
