@@ -5,7 +5,7 @@ import {utils} from './utils'
 const initialState = utils(Articles)
 
 export default (movies = initialState, action) => {
-   const {type, payload} = action
+   const {type} = action
 
    switch (type) {
         case LOAD_MOVIES:
@@ -13,6 +13,4 @@ export default (movies = initialState, action) => {
         default:
             return movies
    }
-
-   
 }

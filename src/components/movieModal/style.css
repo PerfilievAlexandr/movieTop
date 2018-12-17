@@ -1,0 +1,53 @@
+.movieModal {
+    position: fixed;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 90%;
+
+    background-color: coral;
+}
+
+.movieModal__close {
+    position: absolute;
+    content: "";
+    top: 0;
+    right: -30px;
+
+    width: 25px;
+    height: 25px;
+
+    background-color: aqua;
+    font-size: 0;
+
+}
+
+.movieModal__title {
+    flex-basis: 100%;
+}
+
+.movieModal__info {
+    display: flex
+}
+
+.movieModal__picture {
+       margin-right: 50px;
+
+}
+
+.movieModal__picture img {
+    width: 200px;
+    height: 300px;
+    display: block;
+}
+
+.movieModal__data {
+    display: flex;
+    flex-direction: column;
+}
+

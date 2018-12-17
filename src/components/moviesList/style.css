@@ -5,9 +5,10 @@
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 20px;
+    box-sizing: border-box;
 
     list-style: none;
-    width: 900px;
+    width: 890px;
     margin: 0 auto;
     background-color: beige
 }
