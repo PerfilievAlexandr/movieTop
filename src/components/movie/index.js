@@ -3,24 +3,17 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { selectedMovies } from '../../selectors'
 import './style.css'
-import MovieModal from '../movieModal';
-import {toggleOpenMovie} from '../../ac'
-import {toggleOpen} from '../../selectors'
+import {OpenCloseMovie} from '../../ac'
+
+
 
 
 class Movie extends Component {
 
     render() {
-        const { movie, open, id } = this.props
         
-        if (open) {
-            return (
-                <MovieModal 
-                   id = {id}
-                />
-            )
-        }
-        
+        const {movie} = this.props
+      
         return (
             <div>
                 <div
@@ -34,16 +27,17 @@ class Movie extends Component {
         )
     }
 
-    onChange = (id) => {
-        this.props.toggleOpenMovie(this.props.id)
+    onChange = () => {
+        this.props.OpenCloseMovie(this.props.id)
     }
 }
 
 Movie.propTypes = {
-    movies: PropTypes.string
+    movie: PropTypes.object,
+    id: PropTypes.string,
+    open: PropTypes.bool
 }
 
 export default connect((state, ownProps) => ({
-    movie: selectedMovies(state, ownProps),
-    open: toggleOpen(state) 
-}), {toggleOpenMovie})(Movie)
+    movie: selectedMovies(state, ownProps), 
+}), {OpenCloseMovie})(Movie)

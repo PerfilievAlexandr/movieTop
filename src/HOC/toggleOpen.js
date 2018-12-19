@@ -16,7 +16,7 @@ export default (WrappedComponent) => {
             )
         }
 
-        onChange = (open) => {
+        onChange = () => {
             this.setState({
                 open: !this.state.open 
             })

@@ -13,7 +13,7 @@ export function searchMovies(search) {
     }
 }
 
-export function toggleOpenMovie(id) {
+export function OpenCloseMovie(id) {
     return {
         type: OPEN_MOVIE,
         payload: id

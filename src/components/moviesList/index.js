@@ -4,10 +4,12 @@ import { foundMovies } from '../../selectors'
 import PropTypes from 'prop-types'
 import Movie from '../movie'
 import './style.css'
+import {toggleOpenMovie} from '../../selectors'
+import MovieModal from '../movieModal';
 
 class MoviesList extends Component {
     render() {
-        const { movies } = this.props
+        const { movies, open } = this.props
         const moviesList = movies.map((movie) => (
             <li key={movie.id}>
                 <Movie
@@ -15,6 +17,13 @@ class MoviesList extends Component {
                 />
             </li>)
         )
+
+        if (open) {
+            return (
+                <MovieModal />
+            )
+        }     
+
         return (
             <div  className = 'moviesList'>
                 {moviesList}
@@ -28,7 +37,8 @@ MoviesList.propTypes = {
 }
 
 export default connect((store) => ({
-    movies: foundMovies(store)
+    movies: foundMovies(store),
+    open: toggleOpenMovie(store)
 })
 
 )(MoviesList)

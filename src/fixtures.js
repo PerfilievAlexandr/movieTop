@@ -1,4 +1,4 @@
-export const Comments = [
+export const comments = [
   {
     id: 'qwerqwer',
     user: 'Gilliam Underwood',
@@ -108,6 +108,9 @@ export const Articles = [
       'qwerqwer',
       'lkjhsdlfkg',
       'zxcvzcxvzxcv',
+      'qwerqwer',
+      'lkjhsdlfkg',
+      'zxcvzcxvzxcv',
       'fghjfghjfghj',
       'ertyoertywte'
     ]
@@ -118,7 +121,7 @@ export const Articles = [
     title: 'Форрест Гамп',
     top: 8,
     text: 'От лица главного героя Форреста Гампа, слабоумного безобидного человека с благородным и открытым сердцем, рассказывается история его необыкновенной жизни. Фантастическим образом превращается он в известного футболиста, героя войны, преуспевающего бизнесмена. Он становится миллиардером, но остается таким же бесхитростным, глупым и добрым. Форреста ждет постоянный успех во всем, а он любит девочку, с которой дружил в детстве, но взаимность приходит слишком поздно.',
-    comments: ['qwerqwertyy']
+    comments: []
   },
   {
     id: '56c782f1978fdf9a0100df52',

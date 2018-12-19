@@ -1,17 +1,16 @@
 import React, { Component } from 'react'
 import './style.css'
-import {toggleOpenMovie} from '../../ac'
-import {toggleOpen, selectedMovieModal} from '../../selectors'
+import {OpenCloseMovie} from '../../ac'
+import {toggleOpenMovie, selectedMovieModal} from '../../selectors'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import CommentList from '../commentList';
 
 
 
 class MovieModal extends Component {
     render() {
-        const { movie } = this.props
-
-        console.log(this.props)
- 
+        const { movie} = this.props
 
         return (
             <div className='movieModal'>
@@ -35,16 +34,25 @@ class MovieModal extends Component {
                 <p className='movieModal__discription'>
                     {movie.text}
                 </p>
+                <CommentList 
+                    comments = {movie.comments}
+                />
             </div>
         )
     }
 
     onChange = () => {
-        this.props.toggleOpenMovie()
+        this.props.OpenCloseMovie()
     }
+
+}
+
+MovieModal.propTypes = {
+    movie: PropTypes.object,
+    id: PropTypes.string,
 }
 
 export default connect((state) => ({
     movie: selectedMovieModal(state),
-    open: toggleOpen(state) 
-}), {toggleOpenMovie})(MovieModal)
+    open: toggleOpenMovie(state) 
+}), {OpenCloseMovie})(MovieModal)
