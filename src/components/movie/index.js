@@ -28,7 +28,9 @@ class Movie extends Component {
     }
 
     onChange = () => {
-        this.props.OpenCloseMovie(this.props.id)
+        const {OpenCloseMovie, clickedMovie, id} = this.props 
+        OpenCloseMovie(id)
+        clickedMovie(id)
     }
 }
 

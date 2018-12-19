@@ -10,7 +10,7 @@ import CommentList from '../commentList';
 
 class MovieModal extends Component {
     render() {
-        const { movie} = this.props
+        const { movie, selectedMovieId} = this.props
 
         return (
             <div className='movieModal'>
@@ -36,6 +36,7 @@ class MovieModal extends Component {
                 </p>
                 <CommentList 
                     comments = {movie.comments}
+                    selectedMovieId = {selectedMovieId}
                 />
             </div>
         )

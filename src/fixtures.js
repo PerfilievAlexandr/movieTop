@@ -108,9 +108,6 @@ export const Articles = [
       'qwerqwer',
       'lkjhsdlfkg',
       'zxcvzcxvzxcv',
-      'qwerqwer',
-      'lkjhsdlfkg',
-      'zxcvzcxvzxcv',
       'fghjfghjfghj',
       'ertyoertywte'
     ]

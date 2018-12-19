@@ -4,31 +4,45 @@ import { foundMovies } from '../../selectors'
 import PropTypes from 'prop-types'
 import Movie from '../movie'
 import './style.css'
-import {toggleOpenMovie} from '../../selectors'
+import { toggleOpenMovie } from '../../selectors'
 import MovieModal from '../movieModal';
 
 class MoviesList extends Component {
+
+    state = {
+        selectedMovieId: ''
+    }
+
     render() {
         const { movies, open } = this.props
+
+        const movieModal = open
+            ?
+                <MovieModal selectedMovieId={this.state.selectedMovieId}/>
+            :
+                null
+
         const moviesList = movies.map((movie) => (
             <li key={movie.id}>
                 <Movie
-                    id = {movie.id}
+                    id={movie.id}
+                    clickedMovie={this.clickedMovie}
                 />
             </li>)
         )
 
-        if (open) {
-            return (
-                <MovieModal />
-            )
-        }     
-
         return (
-            <div  className = 'moviesList'>
+            <div className='moviesList'>
+                {movieModal}
                 {moviesList}
             </div>
         )
+    }
+
+    clickedMovie = (id) => {
+        this.setState({
+            selectedMovieId: id
+        })
     }
 }
 

@@ -1,4 +1,4 @@
-import {LOAD_MOVIES, SEARCH_MOVIES, OPEN_MOVIE} from '../constants/actionTypes'
+import { LOAD_MOVIES, SEARCH_MOVIES, OPEN_MOVIE, ADD_COMMENT } from '../constants/actionTypes'
 
 export function loadMovies() {
     return {
@@ -17,5 +17,16 @@ export function OpenCloseMovie(id) {
     return {
         type: OPEN_MOVIE,
         payload: id
+    }
+}
+
+export function addComment(comment, selectedMovieId) {
+    return (dispatch) => {
+        const randomId = Math.random().toString(16).slice(2)
+        dispatch({
+            type: ADD_COMMENT,
+            payload: {comment, selectedMovieId, randomId},
+            generateId: true
+        })
     }
 }

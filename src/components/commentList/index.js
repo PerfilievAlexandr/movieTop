@@ -2,13 +2,12 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Comment from '../comment'
 import './style.css'
+import CommentForm from '../commentForm/commentForm';
 
 class CommentList extends Component {
 
     render() {
-        const { comments } = this.props
-
-        console.log('length', comments)
+        const { comments, selectedMovieId } = this.props
 
         const commentsMovie = comments.map((id) => (
             <li key={id}>
@@ -27,10 +26,9 @@ class CommentList extends Component {
                 <ul className='movieModal__comment-list-comments'>
                     {comment}
                 </ul>
-                <button 
-                    className='movieModal__comment-list-addComment btn'
-                        
-                >Добавить комментарий</button>
+                <CommentForm
+                    selectedMovieId={selectedMovieId}
+                />
             </div>
 
         )
