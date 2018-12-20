@@ -7,7 +7,7 @@ import CommentForm from '../commentForm/commentForm';
 class CommentList extends Component {
 
     render() {
-        const { comments, selectedMovieId } = this.props
+        const { comments } = this.props
 
         const commentsMovie = comments.map((id) => (
             <li key={id}>
@@ -26,11 +26,8 @@ class CommentList extends Component {
                 <ul className='movieModal__comment-list-comments'>
                     {comment}
                 </ul>
-                <CommentForm
-                    selectedMovieId={selectedMovieId}
-                />
+                <CommentForm />
             </div>
-
         )
     }
 }

@@ -1,4 +1,4 @@
-import { LOAD_MOVIES, SEARCH_MOVIES, OPEN_MOVIE, ADD_COMMENT } from '../constants/actionTypes'
+import { LOAD_MOVIES, SEARCH_MOVIES, OPEN_MOVIE, ADD_COMMENT, CHANGE_RATING } from '../constants/actionTypes'
 
 export function loadMovies() {
     return {
@@ -26,7 +26,13 @@ export function addComment(comment, selectedMovieId) {
         dispatch({
             type: ADD_COMMENT,
             payload: {comment, selectedMovieId, randomId},
-            generateId: true
         })
+    }
+}
+
+export function changeRating(top, selectedMovieId) {
+    return {
+        type: CHANGE_RATING,
+        payload: {top, selectedMovieId}
     }
 }

@@ -7,3 +7,5 @@ export const OPEN_MOVIE = 'OPEN_MOVIE'
 export const LOAD_COMMENTS = 'LOAD_COMMENTS'
 
 export const ADD_COMMENT = 'ADD_COMMENT'
+
+export const CHANGE_RATING = 'CHANGE_RATING'

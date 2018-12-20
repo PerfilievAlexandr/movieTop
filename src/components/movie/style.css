@@ -1,16 +1,27 @@
 .movieList--item {
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    flex-wrap: wrap;
+    padding: 10px;
     
-    width: 280px;
-    height: 150px;
+    width: 300px;
+    height: 400px;
     border: 2px solid black;
+    box-sizing: border-box;
+    margin-bottom: 20px;   
+}
 
-    margin-top: 20px;
-    padding: 20px;
-    box-sizing: border-box
+.movieList--item-picture {
+    width: 100%;
+    height: 300px;
     
+    background-image: url('../../img/гладиатор.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.movieList--item-title {
+    text-align: center
 }
 
 .movieList--item:hover {

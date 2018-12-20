@@ -4,6 +4,7 @@ export const moviesData = (state) => state.movies
 export const moviesId = (_, ownProps) => ownProps.id
 export const searchData = (state) => state.search.toLowerCase()
 export const toggleOpenMovie = (state) => state.toggleOpenMovie.open
+export const idOpenMovie = (state) => state.toggleOpenMovie.id
 export const movieModalId = (state) => state.toggleOpenMovie.id
 export const commentsData = (state) => state.comments
 export const commentsId = (_, ownProps) => ownProps.id

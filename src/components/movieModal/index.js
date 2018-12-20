@@ -1,42 +1,48 @@
 import React, { Component } from 'react'
 import './style.css'
-import {OpenCloseMovie} from '../../ac'
-import {toggleOpenMovie, selectedMovieModal} from '../../selectors'
+import { OpenCloseMovie } from '../../ac'
+import { toggleOpenMovie, selectedMovieModal } from '../../selectors'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import CommentList from '../commentList';
+import Rating from '../rating';
 
 
 
 class MovieModal extends Component {
     render() {
-        const { movie, selectedMovieId} = this.props
+        const { movie } = this.props
 
         return (
             <div className='movieModal'>
                 <button
                     className='movieModal__close'
-                    onClick = {this.onChange}
+                    onClick={this.onChange}
                 >закрыть</button>
                 <h2 className='movieModal__title'>{movie.title}</h2>
                 <div className='movieModal__info'>
-                    <div className='movieModal__picture'>
-                        <img 
-                            src='../../img/1+1.jpg'
-                            alt = 'баннер'
-                        />
+                    <div
+                        className='movieModal__picture'
+                    >
                     </div>
-                    <div className='movieModal__data'>
-                        <span>Год: {movie.date}</span>
-                        <span>Рейтинг: {movie.top}</span>
-                    </div>
+                    <ul className='movieModal__data'>
+                        <li className='movieModal__year'>
+                            <span>Год:</span>
+                            {movie.date}
+                        </li>
+                        <li className='movieModal__top-block'>
+                            <span>Рейтинг: {movie.top}/10</span>
+                            <Rating 
+                                movie={movie} 
+                            />
+                        </li>
+                    </ul>
                 </div>
                 <p className='movieModal__discription'>
                     {movie.text}
                 </p>
-                <CommentList 
-                    comments = {movie.comments}
-                    selectedMovieId = {selectedMovieId}
+                <CommentList
+                    comments={movie.comments}
                 />
             </div>
         )
@@ -55,5 +61,5 @@ MovieModal.propTypes = {
 
 export default connect((state) => ({
     movie: selectedMovieModal(state),
-    open: toggleOpenMovie(state) 
-}), {OpenCloseMovie})(MovieModal)
+    open: toggleOpenMovie(state)
+}), { OpenCloseMovie })(MovieModal)

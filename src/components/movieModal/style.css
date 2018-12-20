@@ -1,6 +1,6 @@
 .movieModal {
     position: absolute;
-    top: 0;
+    top: 100px;
     left: 50%;
     transform: translateX(-50%);
     padding: 20px;
@@ -8,7 +8,7 @@
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    width: 85%;
+    width: 90%;
 
     background-color: coral;
 }
@@ -37,6 +37,8 @@
 
 .movieModal__picture {
        margin-right: 50px;
+       width: 200px;
+       height: 300px;
 
 }
 
@@ -48,6 +50,28 @@
 
 .movieModal__data {
     display: flex;
+
+    list-style: none;
+    padding-left: 0;
     flex-direction: column;
+    
+    font-size: 20px;
+}
+
+.movieModal__data li {
+    margin-bottom: 20px;
+}
+
+.movieModal__data span {
+    font-weight: bold;
+    margin-right: 50px;
+}
+
+.movieModal__year {
+}
+
+.movieModal__top-block {
+    display: flex;
+    position: relative;
 }
 

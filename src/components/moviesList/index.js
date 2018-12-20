@@ -9,16 +9,12 @@ import MovieModal from '../movieModal';
 
 class MoviesList extends Component {
 
-    state = {
-        selectedMovieId: ''
-    }
-
     render() {
         const { movies, open } = this.props
 
         const movieModal = open
             ?
-                <MovieModal selectedMovieId={this.state.selectedMovieId}/>
+                <MovieModal />
             :
                 null
 
@@ -26,7 +22,6 @@ class MoviesList extends Component {
             <li key={movie.id}>
                 <Movie
                     id={movie.id}
-                    clickedMovie={this.clickedMovie}
                 />
             </li>)
         )
@@ -37,12 +32,6 @@ class MoviesList extends Component {
                 {moviesList}
             </div>
         )
-    }
-
-    clickedMovie = (id) => {
-        this.setState({
-            selectedMovieId: id
-        })
     }
 }
 

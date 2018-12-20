@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import './style.css'
 import {addComment} from '../../ac'
+import {idOpenMovie} from '../../selectors'
 
 
 
@@ -50,8 +51,8 @@ class CommentForm extends Component {
 
     sentComment = (evt) => {
         evt.preventDefault()
-        const {addComment, selectedMovieId} = this.props
-        addComment(this.state, selectedMovieId)
+        const {addComment, id} = this.props
+        addComment(this.state, id)
         this.setState({
             user: '',
             text: ''
@@ -60,4 +61,6 @@ class CommentForm extends Component {
 
 }
 
-export default connect(null, {addComment})(CommentForm)
+export default connect((state => ({
+    id: idOpenMovie(state)
+})), {addComment})(CommentForm)
