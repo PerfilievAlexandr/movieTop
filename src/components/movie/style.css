@@ -1,4 +1,4 @@
-.movieList--item {
+.movieList__item {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -11,7 +11,7 @@
     margin-bottom: 20px;   
 }
 
-.movieList--item-picture {
+.movieList__item-picture {
     width: 100%;
     height: 300px;
     
@@ -20,14 +20,14 @@
     background-repeat: no-repeat;
 }
 
-.movieList--item-title {
+.movieList__item-title {
     text-align: center
 }
 
-.movieList--item:hover {
-    border: 2px solid blue;
+.movieList__item:hover {
+    background-color: floralwhite
 }
 
-.movieList--item:active {
+.movieList__item:active {
     border: 2px solid red;
 }

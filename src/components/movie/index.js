@@ -14,14 +14,14 @@ class Movie extends Component {
 
         return (
             <div
-                className="movieList--item"
+                className="movieList__item"
                 onClick={this.onChange}
             >
                 <div
-                  className='movieList--item-picture'
+                  className='movieList__item-picture'
                 >
                 </div>
-                <h3 className='movieList--item-title'>{movie.title}</h3>
+                <h3 className='movieList__item-title'>{movie.title}</h3>
             </div>
         )
     }

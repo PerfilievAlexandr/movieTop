@@ -8,13 +8,16 @@ class Header extends Component {
     render() {
         return (
             <section className="header">
-                <div className="header--wrapper">
-                    <div className="header--search">
-                        <span className="header--search-title">Поиск</span>
+                <div className="header__wrapper">
+                    <div className="header__search">
+                        <span className="header__search-title">Поиск</span>
                         <input 
                             onChange={this.handleChange}
                         />
                     </div>
+                    <button
+                        className='header__addfilm btn'
+                    >Добавить фильм</button>
 
                 </ div>
             </section>
