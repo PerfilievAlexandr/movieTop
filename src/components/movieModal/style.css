@@ -73,5 +73,11 @@
 .movieModal__top-block {
     display: flex;
     position: relative;
+    justify-content: space-between;
+}
+
+.movieModal__top-block span {
+    display: block;
+    min-width: 130px;
 }
 

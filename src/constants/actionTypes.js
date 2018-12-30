@@ -13,3 +13,9 @@ export const CHANGE_RATING = 'CHANGE_RATING'
 export const ADD_MOVIE = 'ADD_MOVIE'
 
 export const OPEN_FORM = 'OPEN_FORM'
+
+export const MOVIE_STYLE = ['ужасы', 'комедия', 'фантастика', 'боевик', 'драмма']
+
+export const MOVIE_STYLE_LOAD = 'MOVIE_STYLE_LOAD'
+
+export const SELECT_MOVIE_STYLE = 'SELECT_MOVIE_STYLE'

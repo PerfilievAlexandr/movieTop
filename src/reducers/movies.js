@@ -1,5 +1,5 @@
 import {Articles} from '../fixtures'
-import {LOAD_MOVIES, ADD_COMMENT, CHANGE_RATING, ADD_MOVIE} from '../constants/actionTypes'
+import {LOAD_MOVIES, ADD_COMMENT, CHANGE_RATING, ADD_MOVIE, SELECT_MOVIE_STYLE} from '../constants/actionTypes'
 import {utils} from './utils'
 
 const initialState = utils(Articles)
@@ -23,6 +23,11 @@ export default (movies = initialState, action) => {
 				...movies,
 				[payload.selectedMovieId]: {...movies[payload.selectedMovieId], top: parseInt(payload.top)}
 			}
+		case SELECT_MOVIE_STYLE:
+			return {
+				...movies
+			}
+
 		case ADD_MOVIE:
 			return {
 				...movies,

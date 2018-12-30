@@ -3,17 +3,21 @@ import {searchMovies, OpenCloseForm} from '../../ac'
 import {connect} from 'react-redux'
 import './style.css'
 import MovieForm from "../movieForm";
-import {toggleOpenForm} from '../../selectors'
+import {toggleOpenForm, movieStylesData} from '../../selectors'
 
 class Header extends Component {
 
 
 	render() {
 
-		const {open} = this.props
+		const {open, moviesTypesData} = this.props
 
 		const addMovieForm = open ? <MovieForm /> : null
 		const buttonText = open ? 'Закрыть форму' : 'Добавить фильм'
+		const movieTypes = moviesTypesData.map((type, index) => (
+			<option value={type} key={index}>{type}</option>
+		))
+
 
 		return (
 			<section className="header">
@@ -23,11 +27,19 @@ class Header extends Component {
 						<input
 							onChange={this.handleChange}
 						/>
+						<select
+							name="movieType"
+							id="header__movieType"
+						>
+							{movieTypes}
+						</select>
 					</div>
 					<button
 						className='header__addfilm btn'
 						onClick={this.handleToggleFormOpen}
-					>{buttonText}</button>
+					>
+						{buttonText}
+					</button>
 					{addMovieForm}
 				</ div>
 			</section>
@@ -46,5 +58,6 @@ class Header extends Component {
 
 
 export default connect((state) => ({
-	open: toggleOpenForm(state)
+	open: toggleOpenForm(state),
+	moviesTypesData: movieStylesData(state)
 }), {searchMovies, OpenCloseForm})(Header)
