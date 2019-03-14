@@ -9,7 +9,7 @@ export const idOpenMovie = (state) => state.toggleOpenMovie.id
 export const movieModalId = (state) => state.toggleOpenMovie.id
 export const commentsData = (state) => state.comments
 export const commentsId = (_, ownProps) => ownProps.id
-export const movieStylesData = (state) => state.filtersData.style
+export const toggleOpenFilters = (state) => state.filters.openForm
 
 
 export const arrMoviesData = createSelector(moviesData, movies => Object.values(movies))

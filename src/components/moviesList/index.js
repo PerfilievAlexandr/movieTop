@@ -1,22 +1,24 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { foundMovies } from '../../selectors'
-import PropTypes from 'prop-types'
-import Movie from '../movie'
-import './style.css'
-import { toggleOpenMovie } from '../../selectors'
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {foundMovies} from '../../selectors';
+import PropTypes from 'prop-types';
+import Movie from '../movie';
+import './style.css';
+import {toggleOpenMovie} from '../../selectors';
 import MovieModal from '../movieModal';
+import {loadMovies} from '../../ac';
+
 
 class MoviesList extends Component {
 
     render() {
-        const { movies, open } = this.props
+        const {movies, open} = this.props
 
         const movieModal = open
             ?
-                <MovieModal />
+            <MovieModal/>
             :
-                null
+            null
 
         const moviesList = movies.map((movie) => (
             <li key={movie.id}>
@@ -33,6 +35,11 @@ class MoviesList extends Component {
             </div>
         )
     }
+
+    componentDidMount() {
+        const {moviesData} = this.props;
+        moviesData && moviesData();
+    };
 }
 
 MoviesList.propTypes = {
@@ -40,8 +47,8 @@ MoviesList.propTypes = {
 }
 
 export default connect((store) => ({
-    movies: foundMovies(store),
-    open: toggleOpenMovie(store)
-})
-
+        movies: foundMovies(store),
+        open: toggleOpenMovie(store)
+    }),
+    {moviesData: loadMovies}
 )(MoviesList)

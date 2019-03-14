@@ -4,7 +4,7 @@ import search from './search'
 import toggleOpenMovie from './toggleOpenMovie'
 import comments from './comments'
 import toggleOpenForm from './toggleOpenForm'
-import filtersData from './filtersData'
+import filters from './filters'
 
 const reduser = combineReducers({
 	movies,
@@ -12,7 +12,7 @@ const reduser = combineReducers({
 	toggleOpenMovie,
 	comments,
 	toggleOpenForm,
-	filtersData
+	filters
 })
 
 export default reduser

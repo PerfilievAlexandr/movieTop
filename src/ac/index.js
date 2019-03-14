@@ -1,10 +1,26 @@
-import { SEARCH_MOVIES, OPEN_MOVIE, ADD_COMMENT, CHANGE_RATING, ADD_MOVIE, OPEN_FORM} from '../constants/actionTypes'
+import {
+	SEARCH_MOVIES,
+	OPEN_MOVIE,
+	ADD_COMMENT,
+	CHANGE_RATING,
+	ADD_MOVIE,
+	OPEN_FORM,
+	OPEN_FILTERS,
+	LOAD_MOVIES
+} from '../constants/actionTypes'
 
-// export function loadMovies() {
-// 	return {
-// 		type: LOAD_MOVIES,
-// 	}
-// }
+export function loadMovies() {
+	return (dispatch) => {
+		const movies = fetch('/movies')
+			.then(response => console.log('qqqq', response.json()))
+			.then(data => data);
+		console.log(movies);
+		dispatch({
+			type: LOAD_MOVIES,
+			payload: movies
+		});
+	}
+}
 
 export function searchMovies(search) {
 	return {
@@ -23,6 +39,12 @@ export function OpenCloseMovie(id) {
 export function OpenCloseForm() {
 	return {
 		type: OPEN_FORM
+	}
+}
+
+export function openCloseFilters() {
+	return {
+		type: OPEN_FILTERS
 	}
 }
 

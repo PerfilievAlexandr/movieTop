@@ -1,63 +1,65 @@
 import React, {Component} from 'react'
-import {searchMovies, OpenCloseForm} from '../../ac'
+import {searchMovies, OpenCloseForm, openCloseFilters} from '../../ac'
 import {connect} from 'react-redux'
 import './style.css'
 import MovieForm from "../movieForm";
-import {toggleOpenForm, movieStylesData} from '../../selectors'
+import {toggleOpenForm, toggleOpenFilters} from '../../selectors'
+import Filters from '../filters'
 
 class Header extends Component {
 
 
-	render() {
+    render() {
 
-		const {open, moviesTypesData} = this.props
-
-		const addMovieForm = open ? <MovieForm /> : null
-		const buttonText = open ? 'Закрыть форму' : 'Добавить фильм'
-		const movieTypes = moviesTypesData.map((type, index) => (
-			<option value={type} key={index}>{type}</option>
-		))
+        const {openForm, openFilters} = this.props
+        const addMovieForm = openForm ? <MovieForm/> : null
+        const filtersOpen = openFilters ? <Filters /> : null
+        const buttonText = openForm ? 'Закрыть форму' : 'Добавить фильм'
 
 
-		return (
-			<section className="header">
-				<div className="header__wrapper">
-					<div className="header__search">
-						<span className="header__search-title">Поиск</span>
-						<input
-							onChange={this.handleChange}
-						/>
-						<select
-							name="movieType"
-							id="header__movieType"
-						>
-							{movieTypes}
-						</select>
-					</div>
-					<button
-						className='header__addfilm btn'
-						onClick={this.handleToggleFormOpen}
-					>
-						{buttonText}
-					</button>
-					{addMovieForm}
-				</ div>
-			</section>
-		)
-	}
+        return (
+            <section className="header">
+                <div className="header__wrapper">
+                    <div className="header__search">
+                        <label className="header__search-title">Поиск
+                            <input
+                                onChange={this.handleChange}
+                            />
+                        </label>
+                        <button
+                            className="header__filters"
+                            onClick={this.handleToggleFiltersOpen}
+                        />
+                        {filtersOpen}
+                    </div>
+                    <button
+                        className='header__addfilm btn'
+                        onClick={this.handleToggleFormOpen}
+                    >
+                        {buttonText}
+                    </button>
+                    {addMovieForm}
+                </ div>
+            </section>
+        )
+    }
 
-	handleChange = (evt) => {
-		const {searchMovies} = this.props
-		searchMovies(evt.target.value)
-	}
+    handleChange = (evt) => {
+        const {searchMovies} = this.props
+        searchMovies(evt.target.value)
+    }
 
-	handleToggleFormOpen = () => {
-		this.props.OpenCloseForm()
-	}
+    handleToggleFormOpen = () => {
+        this.props.OpenCloseForm()
+    }
+
+    handleToggleFiltersOpen = () => {
+        this.props.openCloseFilters()
+    }
 }
 
 
 export default connect((state) => ({
-	open: toggleOpenForm(state),
-	moviesTypesData: movieStylesData(state)
-}), {searchMovies, OpenCloseForm})(Header)
+    openForm: toggleOpenForm(state),
+    openFilters: toggleOpenFilters(state)
+}), {searchMovies, OpenCloseForm, openCloseFilters})(Header)
