@@ -8,7 +8,12 @@ import {OpenCloseMovie} from '../../ac'
 
 class Movie extends Component {
 	render() {
-		const {movie} = this.props
+		const {movie} = this.props;
+		const image = React.createElement(
+			'img',
+			{src: movie.picture},
+			null
+		);
 
 		return (
 			<div
@@ -18,7 +23,8 @@ class Movie extends Component {
 				<div
 					className='movieList__item-picture'
 				>
-					<img src={movie.picture} alt="баннер" width='100%' height='100%'/>
+					
+					{image}
 				</div>
 				<h3 className='movieList__item-title'>{movie.title}</h3>
 			</div>

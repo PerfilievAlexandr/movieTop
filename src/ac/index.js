@@ -11,14 +11,16 @@ import {
 
 export function loadMovies() {
 	return (dispatch) => {
-		const movies = fetch('/movies')
-			.then(response => console.log('qqqq', response.json()))
-			.then(data => data);
-		console.log(movies);
-		dispatch({
-			type: LOAD_MOVIES,
-			payload: movies
-		});
+		fetch('/movies')
+			.then(response => response.json())
+			.then(data => {
+				dispatch({
+					type: LOAD_MOVIES,
+					payload: data
+				});
+			})
+			.catch((error) => error);
+		
 	}
 }
 

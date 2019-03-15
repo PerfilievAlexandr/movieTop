@@ -1,15 +1,17 @@
-import {Articles} from '../fixtures'
-import {LOAD_MOVIES, ADD_COMMENT, CHANGE_RATING, ADD_MOVIE, SELECT_MOVIE_STYLE} from '../constants/actionTypes'
-import {utils} from './utils'
+//import {Articles} from '../fixtures'
+import {LOAD_MOVIES, ADD_COMMENT, CHANGE_RATING, ADD_MOVIE, SELECT_MOVIE_STYLE} from '../constants/actionTypes';
+import {utils} from './utils';
 
-const initialState = utils(Articles)
+const initialState = [];
 
 export default (movies = initialState, action) => {
 	const {type, payload} = action
 
 	switch (type) {
 		case LOAD_MOVIES:
-			return movies
+			movies = utils(payload);
+			console.log(movies)
+			return movies;
 		case ADD_COMMENT:
 			return {
 				...movies,
