@@ -1,20 +1,20 @@
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import {changeRating} from '../../ac'
-import './style.css'
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {changeRating} from '../../ac';
+import './style.css';
 
 
 class Rating extends Component {
 
 	state = {
 		activeStyle: true
-	}
+	};
 
 	render() {
-		const {movie} = this.props
+		const {movie} = this.props;
 
-		const stars = []
+		const stars = [];
 
 		for (let i = 1; i <= 10; i++) {
 			stars.push(
@@ -22,7 +22,6 @@ class Rating extends Component {
 					className={i > movie.top ? 'movieModal__star' : 'movieModal__star movieModal__star--active' }
 					onClick={this.handleChange}
 					key={i}
-          //style={i <= movie.top ? {backgroundColor: 'gold'} : {background: 'none'}}
 				>
 					<input
 						type='radio'
@@ -30,7 +29,7 @@ class Rating extends Component {
 						value={i}
 					/>
 				</label>
-			)
+			);
 		}
 
 		return (
@@ -41,24 +40,22 @@ class Rating extends Component {
 					{stars}
 				</ul>
 			</div>
-		)
-	}
+		);
+	};
 
 	handleChange = (evt) => {
-		const {changeRating, movie} = this.props
-		changeRating(evt.target.value, movie.id)
+		const {changeRating, movie} = this.props;
+		changeRating(evt.target.value, movie.id);
 
 		this.setState({
 			activeStyle: !this.state.activeStyle
-		})
-	}
-
-
+		});
+	};
 }
 
 Rating.propTypes = {
 	movie: PropTypes.object,
 	changeRating: PropTypes.func
-}
+};
 
-export default connect(null, {changeRating})(Rating)
+export default connect(null, {changeRating})(Rating);

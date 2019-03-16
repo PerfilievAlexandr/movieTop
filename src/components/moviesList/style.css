@@ -14,3 +14,7 @@
     background-color: beige
 }
 
+.movieList__item-picture img{
+    width: 100%;
+}
+
