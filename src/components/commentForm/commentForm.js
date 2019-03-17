@@ -9,26 +9,27 @@ class CommentForm extends Component {
         user: '',
         text: ''
     };
-    
-    render() {   
-       
+
+    render() {
+
         return (
             <form className='comment-form'>
-                <input 
+                <input
                     type='text'
                     value={this.state.user}
                     placeholder='user'
                     onChange={this.writeUser}
                 />
-                <textarea 
+                <textarea
                     value={this.state.text}
                     placeholder='comment'
                     onChange={this.writeComment}
                 />
-                <button 
+                <button
+                    type='submit'
                     className='comment-form__addComment btn'
                     onClick={this.sentComment}
-                >Добавить комментарий</button>      
+                >Добавить комментарий</button>
             </form>
         );
     };
@@ -36,19 +37,23 @@ class CommentForm extends Component {
     writeUser = (evt) => {
         this.setState({
             user: evt.target.value
-        })
+        });
     };
 
     writeComment = (evt) => {
         this.setState({
             text: evt.target.value
-        })
+        });
     };
 
     sentComment = (evt) => {
+
         evt.preventDefault();
         const {addComment, id} = this.props;
-        addComment(this.state, id);
+
+        if (this.state.user && this.state.text) addComment(this.state, id);
+
+
         this.setState({
             user: '',
             text: ''

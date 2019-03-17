@@ -29,9 +29,13 @@ export default (comments = initialState, action) => {
             };
 
         case ADD_COMMENT:
+            console.log(payload);
             return {
                 ...comments,
-                [payload.randomId]: {id: [payload.randomId], user: [payload.comment.user], text: [payload.comment.text]}
+                commentsList: {
+                    ...comments.commentsList,
+                    [payload.randomId]: {id: payload.data.id, user: payload.data.user, text: payload.data.text}
+                }
             };
 
         default:
