@@ -8,7 +8,6 @@ export const searchData = (state) => state.search.toLowerCase();
 export const toggleOpenMovie = (state) => state.toggleOpenMovie.open;
 export const toggleOpenForm = (state) => state.toggleOpenForm.open;
 export const idOpenMovie = (state) => state.toggleOpenMovie.id;
-export const movieModalId = (state) => state.toggleOpenMovie.id;
 export const commentsData = (state) => state.comments.commentsList;
 export const commentsLoading = (state) => state.comments.loading;
 export const commentsLoaded = (state) => state.comments.loaded;
@@ -26,7 +25,7 @@ export const selectedComments = createSelector(commentsData, commentsId, (commen
 	return comments[id];
 });
 
-export const selectedMovieModal = createSelector(moviesData, movieModalId, (movies, id) => {
+export const selectedMovieModal = createSelector(moviesData, idOpenMovie, (movies, id) => {
 	return movies[id];
 });
 

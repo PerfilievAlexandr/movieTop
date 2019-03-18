@@ -5,7 +5,7 @@ import {
 	ADD_MOVIE,
 	SELECT_MOVIE_STYLE,
 	SUCCESS,
-	START
+	START, DELETE_COMMENT
 } from '../constants/actionTypes';
 import {utils} from './utils';
 
@@ -43,7 +43,7 @@ export default (movies = initialState, action) => {
 					...movies.moviesList,
 					[payload.selectedMovieId]: {
 						...movies.moviesList[payload.selectedMovieId],
-						comments: [...movies.moviesList[payload.selectedMovieId].comments, payload.randomId]
+						comments: [...movies.moviesList[payload.selectedMovieId].comments, payload.comment.id]
 					}
 				}
 			};
@@ -66,6 +66,19 @@ export default (movies = initialState, action) => {
 			return {
 				...movies,
 				[payload.randomMovieId]: {id: payload.randomMovieId, date: +payload.movie.year, title: payload.movie.movieTitle, top: +payload.movie.top, picture: payload.movie.picture, text: payload.movie.text, comments: [] }
+			};
+
+        case DELETE_COMMENT:
+			const filteredComments = movies.moviesList[payload.parentId].comments.filter((comment) => comment !== payload.id);
+			return {
+				...movies,
+				moviesList: {
+					...movies.moviesList,
+					[payload.parentId]: {
+						...movies.moviesList[payload.parentId],
+						comments: filteredComments
+					}
+				}
 			};
 
 		default:

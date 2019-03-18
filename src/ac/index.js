@@ -10,7 +10,8 @@ import {
     START,
     SUCCESS,
     FAIL,
-    LOAD_COMMENTS
+    LOAD_COMMENTS,
+    DELETE_COMMENT
 } from '../constants/actionTypes';
 
 export function loadMovies() {
@@ -108,11 +109,37 @@ export function addComment(comment, selectedMovieId) {
                 dispatch({
                     type: ADD_COMMENT,
                     payload: {
-                        data: comment,
+                        comment: data,
                         selectedMovieId: selectedMovieId,
-                        randomId: randomId
                     }
                 });
+            })
+    };
+}
+
+export function deleteComment(id, parentId) {
+    return (dispatch) => {
+        fetch('/delete-comment', {
+                method: "delete",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    id: id,
+                    parentId: parentId
+                })
+            }
+        )
+            .then((response) => response.json())
+            .then((data) => {
+                dispatch({
+                    type: DELETE_COMMENT,
+                    payload: {
+                        id: data,
+                        parentId: parentId
+                    }
+                })
             })
     };
 }

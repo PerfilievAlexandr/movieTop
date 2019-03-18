@@ -34,7 +34,7 @@ app.post('/add-comments', (req, res) => {
         newComment.id = req.body.randomId;
         commentsData.push(newComment);
         writeObj(commentsData, '/comments.json');
-        res.end(JSON.stringify(commentsData));
+        res.end(JSON.stringify(newComment));
     });
 
     fs.readFile(`${__dirname}/movies.json`, 'utf8', (err, data) => {
@@ -49,8 +49,30 @@ app.post('/add-comments', (req, res) => {
         currentMovie[0].comments.push(req.body.randomId);
         moviesData[movieToReplaceIndex] = currentMovie[0];
         writeObj(moviesData, '/movies.json');
-        res.end(JSON.stringify(moviesData));
+    });
+});
 
+app.delete('/delete-comment', (req, res) => {
+    fs.readFile(`${__dirname}/comments.json`, 'utf8', (err, data) => {
+        const commentsData = JSON.parse(data);
+        const index = commentsData.findIndex((comment) => {
+            return comment.id === req.body.id;
+        });
+        commentsData.splice(index, 1);
+
+        writeObj(commentsData, '/comments.json');
+        res.end(JSON.stringify(req.body.id))
+    });
+
+    fs.readFile(`${__dirname}/movies.json`, 'utf8', (err, data) => {
+        const moviesData = JSON.parse(data);
+        moviesData.forEach((movie) => {
+            if (movie.id === req.body.parentId) {
+                const indexOfReqComment = movie.comments.indexOf(req.body.id);
+                movie.comments.splice(indexOfReqComment, 1);
+            }
+        });
+        writeObj(moviesData, '/movies.json');
     });
 });
 
@@ -58,5 +80,3 @@ app.post('/add-comments', (req, res) => {
 
 app.use(express.json());
 app.listen(3001);
-
-

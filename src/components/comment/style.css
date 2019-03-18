@@ -1,7 +1,19 @@
-.movieModal__user-comment {
-    font-weight: bold;
+.comment {
+    margin-bottom: 30px;
 }
 
-.movieModal__comment-text {
+.comment__header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.comment__user {
+    font-weight: bold;
+    margin: 0;
+}
+
+.comment__text {
     margin-bottom: 10px;
 }
