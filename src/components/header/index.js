@@ -20,12 +20,12 @@ class Header extends Component {
         return (
             <section className="header">
                 <div className="header__wrapper">
+                    <h1 className='header__title'>MOVIE TOP</h1>
                     <div className="header__search">
-                        <label className="header__search-title">Поиск
                             <input
                                 onChange={this.handleChange}
+                                placeholder='Поиск'
                             />
-                        </label>
                         <button
                             className="header__filters"
                             onClick={this.handleToggleFiltersOpen}

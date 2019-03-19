@@ -32,8 +32,10 @@ class MoviesList extends Component {
         if (loading) return <Loader/>
         return (
             <div className='moviesList'>
-                {movieModal}
-                {moviesList}
+                <div className='moviesList__wrapper'>
+                    {movieModal}
+                    {moviesList}
+                </div>
             </div>
         )
     }
