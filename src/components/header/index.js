@@ -1,44 +1,43 @@
-import React, {Component} from 'react'
-import {searchMovies, OpenCloseForm, openCloseFilters} from '../../ac'
-import {connect} from 'react-redux'
-import './style.css'
-import MovieForm from "../movieForm";
-import {toggleOpenForm, toggleOpenFilters} from '../../selectors'
-import Filters from '../filters'
+import React, {Component} from 'react';
+import {searchMovies, OpenCloseForm, openCloseFilters, loadMovies} from '../../ac';
+import {connect} from 'react-redux';
+import './style.css';
+import {toggleOpenForm, toggleOpenFilters, moviesLoading, moviesLoaded} from '../../selectors';
+import {NavLink} from 'react-router-dom'
 
 class Header extends Component {
 
 
     render() {
 
-        const {openForm, openFilters} = this.props
-        const addMovieForm = openForm ? <MovieForm/> : null
-        const filtersOpen = openFilters ? <Filters /> : null
+        const {openForm} = this.props
         const buttonText = openForm ? 'Закрыть форму' : 'Добавить фильм'
 
 
         return (
             <section className="header">
                 <div className="header__wrapper">
-                    <h1 className='header__title'>MOVIE TOP</h1>
-                    <div className="header__search">
-                            <input
-                                onChange={this.handleChange}
-                                placeholder='Поиск'
-                            />
+                    <NavLink to='/movies'><h1 className='header__title'>MOVIE TOP</h1></NavLink>
+                    <NavLink to='/addMovie'>
+                        <button
+                            className='header__addfilm btn'
+                            onClick={this.handleToggleFormOpen}
+                        >
+                            {buttonText}
+                        </button>
+                    </NavLink>
+                    <NavLink to='/filters'>
                         <button
                             className="header__filters"
                             onClick={this.handleToggleFiltersOpen}
                         />
-                        {filtersOpen}
+                    </NavLink>
+                    <div className="header__search">
+                        <input
+                            onChange={this.handleChange}
+                            placeholder='Поиск'
+                        />
                     </div>
-                    <button
-                        className='header__addfilm btn'
-                        onClick={this.handleToggleFormOpen}
-                    >
-                        {buttonText}
-                    </button>
-                    {addMovieForm}
                 </ div>
             </section>
         )
@@ -56,10 +55,17 @@ class Header extends Component {
     handleToggleFiltersOpen = () => {
         this.props.openCloseFilters()
     }
+
+    componentDidMount() {
+        const {moviesData, loaded} = this.props;
+        if (!loaded) moviesData && moviesData();
+    };
 }
 
 
 export default connect((state) => ({
     openForm: toggleOpenForm(state),
-    openFilters: toggleOpenFilters(state)
-}), {searchMovies, OpenCloseForm, openCloseFilters})(Header)
+    openFilters: toggleOpenFilters(state),
+    loading: moviesLoading(state),
+    loaded: moviesLoaded(state)
+}), {searchMovies, OpenCloseForm, openCloseFilters, moviesData: loadMovies})(Header)

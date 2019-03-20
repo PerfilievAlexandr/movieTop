@@ -21,6 +21,8 @@ export function loadMovies() {
             type: LOAD_MOVIES + START
         });
 
+        console.log('load movies');
+
         fetch('/movies')
             .then((response) => response.json())
             .then((data) => {
