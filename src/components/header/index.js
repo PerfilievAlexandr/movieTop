@@ -1,37 +1,17 @@
 import React, {Component} from 'react';
-import {searchMovies, OpenCloseForm, openCloseFilters, loadMovies} from '../../ac';
+import {searchMovies, loadMovies} from '../../ac';
 import {connect} from 'react-redux';
 import './style.css';
-import {toggleOpenForm, toggleOpenFilters, moviesLoading, moviesLoaded} from '../../selectors';
-import {NavLink} from 'react-router-dom'
+import {toggleOpenFilters, moviesLoading, moviesLoaded} from '../../selectors';
+import Navigation from '../navigation'
 
 class Header extends Component {
 
-
     render() {
-
-        const {openForm} = this.props
-        const buttonText = openForm ? 'Закрыть форму' : 'Добавить фильм'
-
-
         return (
             <section className="header">
                 <div className="header__wrapper">
-                    <NavLink to='/movies'><h1 className='header__title'>MOVIE TOP</h1></NavLink>
-                    <NavLink to='/addMovie'>
-                        <button
-                            className='header__addfilm btn'
-                            onClick={this.handleToggleFormOpen}
-                        >
-                            {buttonText}
-                        </button>
-                    </NavLink>
-                    <NavLink to='/filters'>
-                        <button
-                            className="header__filters"
-                            onClick={this.handleToggleFiltersOpen}
-                        />
-                    </NavLink>
+                    <Navigation />
                     <div className="header__search">
                         <input
                             onChange={this.handleChange}
@@ -44,16 +24,8 @@ class Header extends Component {
     }
 
     handleChange = (evt) => {
-        const {searchMovies} = this.props
-        searchMovies(evt.target.value)
-    }
-
-    handleToggleFormOpen = () => {
-        this.props.OpenCloseForm()
-    }
-
-    handleToggleFiltersOpen = () => {
-        this.props.openCloseFilters()
+        const {searchMovies} = this.props;
+        searchMovies(evt.target.value);
     }
 
     componentDidMount() {
@@ -64,8 +36,7 @@ class Header extends Component {
 
 
 export default connect((state) => ({
-    openForm: toggleOpenForm(state),
     openFilters: toggleOpenFilters(state),
     loading: moviesLoading(state),
     loaded: moviesLoaded(state)
-}), {searchMovies, OpenCloseForm, openCloseFilters, moviesData: loadMovies})(Header)
+}), {searchMovies, moviesData: loadMovies})(Header)

@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import './style.css'
-import {addMovie, OpenCloseForm} from '../../ac'
+import {addMovie} from '../../ac'
 
 class MovieForm extends Component {
 	state = {
@@ -11,7 +11,7 @@ class MovieForm extends Component {
 		picture: undefined,
 		text: ''
 
-	}
+	};
 
 	render() {
 		return (
@@ -105,7 +105,6 @@ class MovieForm extends Component {
 			picture: '',
 			text: ''
 		})
-		this.props.OpenCloseForm()
 	}
 
 
@@ -114,5 +113,5 @@ class MovieForm extends Component {
 
 export default connect(
 	null,
-	{addMovie, OpenCloseForm}
+	{addMovie}
 )(MovieForm)

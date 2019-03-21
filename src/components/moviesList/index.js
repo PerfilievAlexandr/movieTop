@@ -6,7 +6,6 @@ import Movie from '../movie';
 import './style.css';
 import {toggleOpenMovie, moviesLoading, moviesLoaded} from '../../selectors';
 import MovieModal from '../movieModal';
-//import {loadMovies} from '../../ac';
 import Loader from '../loader'
 
 
@@ -39,11 +38,6 @@ class MoviesList extends Component {
             </div>
         )
     }
-
-    // componentDidMount() {
-    //     const {moviesData, loaded} = this.props;
-    //     if (!loaded) moviesData && moviesData();
-    // };
 }
 
 MoviesList.propTypes = {
@@ -56,5 +50,4 @@ export default connect((store) => ({
         loading: moviesLoading(store),
         loaded: moviesLoaded(store)
     }),
-    //{moviesData: loadMovies}
 )(MoviesList);

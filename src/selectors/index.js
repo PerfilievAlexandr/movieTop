@@ -6,7 +6,6 @@ export const moviesLoaded = (state) => state.movies.loaded;
 export const moviesId = (_, ownProps) => ownProps.id;
 export const searchData = (state) => state.search.toLowerCase();
 export const toggleOpenMovie = (state) => state.toggleOpenMovie.open;
-export const toggleOpenForm = (state) => state.toggleOpenForm.open;
 export const idOpenMovie = (state) => state.toggleOpenMovie.id;
 export const commentsData = (state) => state.comments.commentsList;
 export const commentsLoading = (state) => state.comments.loading;

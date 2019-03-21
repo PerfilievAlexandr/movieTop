@@ -4,8 +4,6 @@ import {
     ADD_COMMENT,
     CHANGE_RATING,
     ADD_MOVIE,
-    OPEN_FORM,
-    OPEN_FILTERS,
     LOAD_MOVIES,
     START,
     SUCCESS,
@@ -75,18 +73,6 @@ export function OpenCloseMovie(id) {
     return {
         type: OPEN_MOVIE,
         payload: id
-    };
-}
-
-export function OpenCloseForm() {
-    return {
-        type: OPEN_FORM
-    };
-}
-
-export function openCloseFilters() {
-    return {
-        type: OPEN_FILTERS
     };
 }
 

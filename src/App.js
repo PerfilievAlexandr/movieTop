@@ -11,9 +11,9 @@ class App extends Component {
             <div>
                 <Header/>
                 <Switch>
-                    <Route path='/filters' component={Filters}/>
-                    <Route path='/addMovie' component={MovieForm}/>
-                    <Route path='*' render = {() => <MoviesList />} />
+                    <Route path='/filters' component = {Filters}/>
+                    <Route path='/addMovie' component = {MovieForm}/>
+                    <Route path='*' component = {MoviesList} />
                 </Switch>
 
             </div>

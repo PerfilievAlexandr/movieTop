@@ -1,0 +1,27 @@
+.filter__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 50px;
+
+
+    background-color: white;
+    box-shadow: 0px 0px 10px 2px gray;
+}
+
+.filter__title {
+    text-align: center;
+
+    flex-basis: 100%;
+}
+
+select {
+    margin-left: 30px;
+}
+
+label {
+    margin-right: 50px;
+}

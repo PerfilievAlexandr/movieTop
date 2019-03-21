@@ -7,11 +7,11 @@ const initialState = {
 
 export default (modalMovie = initialState, action) => {
     const {type, payload} = action
-    
+
     switch (type) {
-        case OPEN_MOVIE: 
+        case OPEN_MOVIE:
             return {...modalMovie, open: !modalMovie.open, id: payload}
-        default: 
+        default:
             return modalMovie
     }
 }
