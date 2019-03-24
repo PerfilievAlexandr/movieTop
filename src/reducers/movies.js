@@ -5,7 +5,7 @@ import {
 	ADD_MOVIE,
 	SELECT_MOVIE_STYLE,
 	SUCCESS,
-	START, DELETE_COMMENT
+	START, DELETE_COMMENT, DELETE_MOVIE
 } from '../constants/actionTypes';
 import {utils} from './utils';
 
@@ -65,7 +65,17 @@ export default (movies = initialState, action) => {
 		case ADD_MOVIE:
 			return {
 				...movies,
-				[payload.randomMovieId]: {id: payload.randomMovieId, date: +payload.movie.year, title: payload.movie.movieTitle, top: +payload.movie.top, picture: payload.movie.picture, text: payload.movie.text, comments: [] }
+				moviesList: utils(payload),
+				loading: false,
+				loaded: true
+			};
+
+		case DELETE_MOVIE:
+			return {
+				...movies,
+				moviesList: utils(payload),
+				loading: false,
+				loaded: true
 			};
 
         case DELETE_COMMENT:

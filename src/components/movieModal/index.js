@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import './style.css'
-import {OpenCloseMovie} from '../../ac'
+import {OpenCloseMovie, deleteMovie} from '../../ac'
 import {toggleOpenMovie, selectedMovieModal} from '../../selectors'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
@@ -46,6 +46,11 @@ class MovieModal extends Component {
                     <CommentList
                         comments={movie.comments}
                     />
+                    <button
+                        className='movieModal__delete btn'
+                        onClick={this.onDeleteMovie}
+                    >Удалить фильм
+                    </button>
                 </div>
 
             </div>
@@ -54,6 +59,14 @@ class MovieModal extends Component {
 
     onChange = () => {
         this.props.OpenCloseMovie()
+    };
+
+    onDeleteMovie = () => {
+
+        const {movie, deleteMovie, OpenCloseMovie} = this.props;
+
+        deleteMovie(movie.id);
+        OpenCloseMovie();
     }
 
 }
@@ -66,4 +79,4 @@ MovieModal.propTypes = {
 export default connect((state) => ({
     movie: selectedMovieModal(state),
     open: toggleOpenMovie(state)
-}), {OpenCloseMovie})(MovieModal)
+}), {OpenCloseMovie, deleteMovie})(MovieModal)

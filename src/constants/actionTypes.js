@@ -28,7 +28,7 @@ export const CHANGE_RATING = 'CHANGE_RATING';
 
 export const ADD_MOVIE = 'ADD_MOVIE';
 
-export const OPEN_FORM = 'OPEN_FORM';
+export const DELETE_MOVIE = 'DELETE_MOVIE';
 
 export const OPEN_FILTERS = 'OPEN_FILTERS';
 

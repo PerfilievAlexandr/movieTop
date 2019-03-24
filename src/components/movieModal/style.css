@@ -40,6 +40,10 @@
     font-size: 0;
 }
 
+.movieModal__delete {
+    margin: 0 auto;
+}
+
 
 
 .movieModal__title {

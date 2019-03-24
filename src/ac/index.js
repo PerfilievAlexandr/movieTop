@@ -9,7 +9,8 @@ import {
     SUCCESS,
     FAIL,
     LOAD_COMMENTS,
-    DELETE_COMMENT
+    DELETE_COMMENT,
+    DELETE_MOVIE
 } from '../constants/actionTypes';
 
 export function loadMovies() {
@@ -78,7 +79,9 @@ export function OpenCloseMovie(id) {
 
 export function addComment(comment, selectedMovieId) {
     return (dispatch) => {
+
         const randomId = Math.random().toString(16).slice(2);
+
         fetch('/add-comments', {
                 method: "POST",
                 headers: {
@@ -108,7 +111,7 @@ export function addComment(comment, selectedMovieId) {
 export function deleteComment(id, parentId) {
     return (dispatch) => {
         fetch('/delete-comment', {
-                method: "delete",
+                method: "DELETE",
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
@@ -141,10 +144,49 @@ export function changeRating(top, selectedMovieId) {
 
 export function addMovie(movie) {
     return (dispatch) => {
+
         const randomMovieId = Math.random().toString(16).slice(2);
-        dispatch({
-            type: ADD_MOVIE,
-            payload: {movie, randomMovieId}
-        });
+
+        fetch('/add-movie', {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                movie: movie,
+                randomMovieId: randomMovieId
+            })
+        })
+            .then((response) => response.json())
+            .then((movies) => {
+                dispatch({
+                    type: ADD_MOVIE,
+                    payload: movies
+                });
+            })
+
     };
+}
+
+export function deleteMovie(id) {
+    return (dispatch) => {
+        fetch('/delete-movie', {
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                movieId: id
+            })
+        })
+            .then((response) => response.json())
+            .then((movies) => {
+                dispatch({
+                    type: DELETE_MOVIE,
+                    payload: movies
+                });
+            })
+    }
 }

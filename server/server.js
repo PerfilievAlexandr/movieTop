@@ -12,7 +12,7 @@ function writeObj(data, url) {
         {"encoding": "utf8"},
         () => {}
     );
-};
+}
 
 
 app.get('/movies', (req, res) => {
@@ -76,6 +76,30 @@ app.delete('/delete-comment', (req, res) => {
     });
 });
 
+app.post('/add-movie', (req, res) => {
+    fs.readFile(`${__dirname}/movies.json`, 'utf8', (err, data) => {
+        const movies = JSON.parse(data);
+        const newMovie = req.body.movie;
+        newMovie.id = req.body.randomMovieId;
+        newMovie.comments = [];
+        newMovie.style = [];
+        const newListMovies = movies.concat(newMovie)
+        writeObj(newListMovies, '/movies.json');
+        res.end(JSON.stringify(newListMovies));
+    });
+});
+
+app.delete('/delete-movie', (req, res) => {
+    fs.readFile(`${__dirname}/movies.json`, 'utf8', (err, data) => {
+        const moviesList = JSON.parse(data);
+        const deleteMovieId = req.body.movieId;
+        const newMovieList = moviesList.filter((movie) => {
+            return movie.id !== deleteMovieId
+        });
+        writeObj(newMovieList, '/movies.json');
+        res.end(JSON.stringify(newMovieList));
+    })
+});
 
 
 app.use(express.json());
