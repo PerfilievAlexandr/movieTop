@@ -108,10 +108,12 @@ class MovieForm extends Component {
         const formData = new FormData();
 
         for (let item in this.state) {
-            formData.append(item, this.state[item])
+            formData.append(item, this.state[item]);
+            console.log(formData.getAll(item));
         }
 
         this.props.addMovie(formData);
+
         this.setState({
             tittle: '',
             date: '',

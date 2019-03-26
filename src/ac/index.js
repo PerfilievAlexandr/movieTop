@@ -149,14 +149,14 @@ export function addMovie(movie) {
         const options = {
             method: "POST",
             headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'multipart/form-data'
             },
-            body: JSON.stringify({
+            body: {
                 movie: movie,
                 randomMovieId: randomMovieId
-            })
+            }
         };
+
         delete options.headers['Content-Type'];
 
         fetch('/add-movie', options)

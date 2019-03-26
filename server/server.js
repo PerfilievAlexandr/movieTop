@@ -1,8 +1,11 @@
 const express = require('express');
 const app = express();
 const fs = require('fs');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const multer = require('multer');
+const path = require('path')
 
+app.use(express.json());
 app.use(bodyParser.json());
 
 function writeObj(data, url) {
@@ -76,19 +79,40 @@ app.delete('/delete-comment', (req, res) => {
     });
 });
 
+// app.post('/add-movie', (req, res) => {
+//     fs.readFile(`${__dirname}/movies.json`, 'utf8', (err, data) => {
+//         const movies = JSON.parse(data);
+//         const newMovie = req.body.movie;
+//         console.log(newMovie);
+//         newMovie.id = req.body.randomMovieId;
+//         newMovie.comments = [];
+//         newMovie.style = [];
+//         const newListMovies = movies.concat(newMovie)
+//         writeObj(newListMovies, '/movies.json');
+//         res.end(JSON.stringify(newListMovies));
+//     });
+// });
+
 app.post('/add-movie', (req, res) => {
-    fs.readFile(`${__dirname}/movies.json`, 'utf8', (err, data) => {
-        const movies = JSON.parse(data);
-        const newMovie = req.body.movie;
-        console.log(newMovie);
-        newMovie.id = req.body.randomMovieId;
-        newMovie.comments = [];
-        newMovie.style = [];
-        const newListMovies = movies.concat(newMovie)
-        writeObj(newListMovies, '/movies.json');
-        res.end(JSON.stringify(newListMovies));
+    const storage = multer.diskStorage({
+        destination: './uploads',
+        filename: function(req, file, cb) {
+            cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+        }
     });
+
+    const upload = multer({
+        storage: storage
+    }).array('movieFields');
+
+
+    upload(req, res, (err) => {
+        console.log(req.body, 'body');
+        console.log(req.files, 'files');
+    });
+    res.end('');
 });
+
 
 app.delete('/delete-movie', (req, res) => {
     fs.readFile(`${__dirname}/movies.json`, 'utf8', (err, data) => {
@@ -103,5 +127,8 @@ app.delete('/delete-movie', (req, res) => {
 });
 
 
-app.use(express.json());
-app.listen(3001);
+
+const port = 3001;
+app.listen(port, () => {
+    console.log(`listen port ${port}`);
+});
