@@ -146,8 +146,7 @@ export function addMovie(movie) {
     return (dispatch) => {
 
         const randomMovieId = Math.random().toString(16).slice(2);
-
-        fetch('/add-movie', {
+        const options = {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -157,7 +156,10 @@ export function addMovie(movie) {
                 movie: movie,
                 randomMovieId: randomMovieId
             })
-        })
+        };
+        delete options.headers['Content-Type'];
+
+        fetch('/add-movie', options)
             .then((response) => response.json())
             .then((movies) => {
                 dispatch({

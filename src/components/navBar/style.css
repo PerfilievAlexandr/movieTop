@@ -12,6 +12,7 @@
     color: white;
     text-decoration: none;
     text-transform: uppercase;
+    border-bottom: 4px solid #565656;
 
     padding: 20px;
     opacity: 1;
@@ -24,4 +25,6 @@
 
 .navigation__link--active {
     border-bottom: 4px solid white;
+    pointer-events: none;
+    cursor: default;
 }

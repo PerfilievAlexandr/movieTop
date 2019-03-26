@@ -7,9 +7,9 @@ import {NavLink} from 'react-router-dom'
 class MovieForm extends Component {
     state = {
         title: '',
-        date: undefined,
-        top: undefined,
-        picture: undefined,
+        date: '',
+        top: '',
+        picture: '',
         text: ''
     };
 
@@ -23,6 +23,7 @@ class MovieForm extends Component {
                         type="text"
                         onChange={this.handleChangeTitle}
                         id='movieFormIDTitle'
+                        name='movieFormIDTitle'
                         value={this.state.title}
                         required
                     />
@@ -31,6 +32,7 @@ class MovieForm extends Component {
                         type="number"
                         onChange={this.handleChangeYear}
                         id='movieFormIDYear'
+                        name='movieFormIDYear'
                         value={this.state.date}
                     />
                     <label htmlFor="movieFormIDTop">Рейтинг</label>
@@ -38,13 +40,15 @@ class MovieForm extends Component {
                         type="number"
                         onChange={this.handleChangeTop}
                         id='movieFormIDTop'
+                        name='movieFormIDTop'
                         value={this.state.top}
                     />
                     <label htmlFor="movieFormIDPicture">Баннер</label>
                     <input
-                        type="text"
+                        type="file"
                         onChange={this.handleChangePicture}
                         id='movieFormIDPicture'
+                        name='movieFormIDPicture'
                         value={this.state.picture}
                     />
                     <label htmlFor="movieFormIDDiscription">Описание</label>
@@ -52,21 +56,20 @@ class MovieForm extends Component {
                         type="textarea"
                         onChange={this.handleChangeText}
                         id='movieFormIDDiscription'
+                        name='movieFormIDDiscription'
                         value={this.state.text}
                     />
                 </div>
-                    <button
-                        className="movieForm__sent-form btn"
-                        onClick={this.HandleClickSentForm}
-                    >
-                        <NavLink to = '/movies'>
+                <button
+                    className="movieForm__sent-form btn"
+                    onClick={this.HandleClickSentForm}
+                >
+                    <NavLink to='/movies'>
                         отправить
-                        </NavLink>
-                    </button>
-
-
+                    </NavLink>
+                </button>
             </form>
-    )
+        )
 
     }
 
@@ -100,23 +103,28 @@ class MovieForm extends Component {
         })
     };
 
-    HandleClickSentForm = (evt) => {
-        evt.preventDefault();
-        this.props.addMovie(this.state);
+    HandleClickSentForm = () => {
+
+        const formData = new FormData();
+
+        for (let item in this.state) {
+            formData.append(item, this.state[item])
+        }
+
+        this.props.addMovie(formData);
         this.setState({
-        tittle: '',
-        date: '',
-        top: '',
-        picture: '',
-        text: ''
-    });
+            tittle: '',
+            date: '',
+            top: '',
+            picture: '',
+            text: ''
+        });
     };
 
 
+}
 
-    }
-
-    export default connect(
+export default connect(
     null,
     {addMovie}
-    )(MovieForm);
+)(MovieForm);

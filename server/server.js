@@ -80,6 +80,7 @@ app.post('/add-movie', (req, res) => {
     fs.readFile(`${__dirname}/movies.json`, 'utf8', (err, data) => {
         const movies = JSON.parse(data);
         const newMovie = req.body.movie;
+        console.log(newMovie);
         newMovie.id = req.body.randomMovieId;
         newMovie.comments = [];
         newMovie.style = [];

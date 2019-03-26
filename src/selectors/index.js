@@ -11,8 +11,6 @@ export const commentsData = (state) => state.comments.commentsList;
 export const commentsLoading = (state) => state.comments.loading;
 export const commentsLoaded = (state) => state.comments.loaded;
 export const commentsId = (_, ownProps) => ownProps.id;
-export const toggleOpenFilters = (state) => state.filters.openForm;
-
 
 export const arrMoviesData = createSelector(moviesData, movies => Object.values(movies));
 

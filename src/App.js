@@ -13,7 +13,7 @@ class App extends Component {
                 <Switch>
                     <Route path='/filters' component = {Filters}/>
                     <Route path='/addMovie' component = {MovieForm}/>
-                    <Route path='*' component = {MoviesList} />
+                    <Route path='/movies' component = {MoviesList} />
                 </Switch>
 
             </div>
